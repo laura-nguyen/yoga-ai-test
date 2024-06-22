@@ -1,0 +1,56 @@
+{
+  "inputUnits": [34],
+  "outputUnits": 5,
+  "inputs": {
+    "leftAnklex": { "dtype": "number", "min": 14, "max": 644 },
+    "leftAnkley": { "dtype": "number", "min": 1, "max": 338 },
+    "leftEarx": { "dtype": "number", "min": 57, "max": 585 },
+    "leftEary": { "dtype": "number", "min": -5, "max": 315 },
+    "leftElbowx": { "dtype": "number", "min": -16, "max": 581 },
+    "leftElbowy": { "dtype": "number", "min": 35, "max": 332 },
+    "leftEyex": { "dtype": "number", "min": 62, "max": 622 },
+    "leftEyey": { "dtype": "number", "min": 1, "max": 339 },
+    "leftHipx": { "dtype": "number", "min": 3, "max": 568 },
+    "leftHipy": { "dtype": "number", "min": 52, "max": 623 },
+    "leftKneex": { "dtype": "number", "min": 93, "max": 511 },
+    "leftKneey": { "dtype": "number", "min": 26, "max": 356 },
+    "leftShoulderx": { "dtype": "number", "min": 134, "max": 470 },
+    "leftShouldery": { "dtype": "number", "min": 22, "max": 382 },
+    "leftWristx": { "dtype": "number", "min": 76, "max": 611 },
+    "leftWristy": { "dtype": "number", "min": 69, "max": 453 },
+    "nosex": { "dtype": "number", "min": 28, "max": 506 },
+    "nosey": { "dtype": "number", "min": 70, "max": 395 },
+    "rightAnklex": { "dtype": "number", "min": 48, "max": 561 },
+    "rightAnkley": { "dtype": "number", "min": 55, "max": 549 },
+    "rightEarx": { "dtype": "number", "min": 27, "max": 525 },
+    "rightEary": { "dtype": "number", "min": 56, "max": 570 },
+    "rightElbowx": { "dtype": "number", "min": 100, "max": 545 },
+    "rightElbowy": { "dtype": "number", "min": 79, "max": 399 },
+    "rightEyex": { "dtype": "number", "min": 149, "max": 529 },
+    "rightEyey": { "dtype": "number", "min": 47, "max": 385 },
+    "rightHipx": { "dtype": "number", "min": 136, "max": 524 },
+    "rightHipy": { "dtype": "number", "min": 291, "max": 502 },
+    "rightKneex": { "dtype": "number", "min": 140, "max": 482 },
+    "rightKneey": { "dtype": "number", "min": 295, "max": 499 },
+    "rightShoulderx": { "dtype": "number", "min": 92, "max": 617 },
+    "rightShouldery": { "dtype": "number", "min": 447, "max": 637 },
+    "rightWristx": { "dtype": "number", "min": 104, "max": 530 },
+    "rightWristy": { "dtype": "number", "min": 447, "max": 640 }
+  },
+  "outputs": {
+    "yogapose": {
+      "dtype": "string",
+      "min": 0,
+      "max": 1,
+      "uniqueValues": ["tree", " tree", " triangle", " chair", " clair"],
+      "legend": {
+        "tree": [1, 0, 0, 0, 0],
+        " tree": [0, 1, 0, 0, 0],
+        " triangle": [0, 0, 1, 0, 0],
+        " chair": [0, 0, 0, 1, 0],
+        " clair": [0, 0, 0, 0, 1]
+      }
+    }
+  },
+  "isNormalized": true
+}
