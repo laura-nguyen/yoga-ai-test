@@ -49,7 +49,6 @@ function App() {
     neuralNetwork.load(modelInfo, yogaModelLoaded);
 
     function yogaModelLoaded() {
-      console.log('Yoga model loaded');
       messageRef.current.innerHTML = 'Yoga model loaded';
       poseNet = ml5.poseNet(webcamRef.current.video, 'single', poseModelReady);
       poseNet.on('pose', gotPoses);
@@ -57,39 +56,19 @@ function App() {
     }
 
     function poseModelReady() {
-      console.log('Pose model loaded');
       messageRef.current.innerHTML = 'Pose model loaded';
       poseNet.singlePose(webcamRef.current.video);
     }
 
     function gotPoses(results) {
-      console.log('Poses:', results);
       setPoses(results);
     }
 
     function drawCameraAndPoses() {
-      if (webcamRef.current && webcamRef.current.video.readyState === 4) {
-        const video = webcamRef.current.video;
-        const videoWidth = video.videoWidth;
-        const videoHeight = video.videoHeight;
-
-        // Set video and canvas dimensions
-        webcamRef.current.video.width = videoWidth;
-        webcamRef.current.video.height = videoHeight;
-        canvasRef.current.width = videoWidth;
-        canvasRef.current.height = videoHeight;
-
-        ctx.save();
-        ctx.scale(-1, 1);
-        ctx.translate(-videoWidth, 0);
-        ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
-        ctx.restore();
-
-        drawKeypoints();
-        drawSkeleton();
-      } else {
-        console.log('Video is not ready yet');
-      }
+      ctx.drawImage(webcamRef.current.video, 0, 0, 640, 360);
+      drawKeypoints();
+      drawSkeleton();
+      classifyKeyPoints();
       window.requestAnimationFrame(drawCameraAndPoses);
     }
 
@@ -132,12 +111,8 @@ function App() {
     }
 
     function yogaResult(error, result) {
-      if (error) {
-        console.error('Error in yogaResult:', error);
-      } else {
-        console.log('Yoga result:', result);
-        messageRef.current.innerHTML = `Pose: "${result[0].label}" --- confidence: ${result[0].confidence.toFixed(2)}`;
-      }
+      if (error) console.error(error);
+      messageRef.current.innerHTML = `Pose: "${result[0].label}" --- confidence: ${result[0].confidence.toFixed(2)}`;
     }
   }, [poses]);
 
@@ -145,13 +120,8 @@ function App() {
     <>
       <div id="message" ref={messageRef}></div>
       <div id="numbers" ref={numbersRef}></div>
-      <Webcam ref={webcamRef} width="640" height="360" style={{
-        width: "0.1px",
-        textAlign: "center",
-        zindex: 9,
-        transform: "scaleX(-1)", // Mirror the webcam video
-      }}/>
-      <canvas ref={canvasRef} width="640" height="360" className='canvas-mirror'></canvas>
+      <Webcam ref={webcamRef} width="640" height="360"/>
+      <canvas ref={canvasRef} width="640" height="360" ></canvas>
     </>
   );
 }
